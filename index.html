@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href=" style.css">
+    <link rel="stylesheet" href="./pages/index.css" type="text/css">
+</head>
+
+<body class="page">
+    <!--Блок header-->
+    <header class="header">
+        <img class="header__logo" src="image/LogoVector.svg" alt="Логотип">
+    </header>
+
+    <main>
+        <!--Блок profile-->
+        <section class="profile">
+            <div class="profile__container">
+                <img class="profile__avatar" src="image/image.jpg" alt=" Фото: Жак-Ив-Кусто">
+                <div class="profile__info">
+                    <h1 class="profile__name">
+                        Жак-Ив-Кусто
+                    </h1>
+                    <button class="profile__button" type="button">
+                        <img src="image/ButtonVector.svg" alt="Иконка карандаш">
+                    </button>
+                    <p class="profile__title">
+                        Исследователь океана
+                    </p>
+                </div>
+            </div>
+            <button class="profile__add-button">
+                <img src="image/PlusVector.svg" alt="Иконка плюс">
+            </button>
+        </section>
+        <!--Блок Element-->
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="image/Dombay.jpg" alt="Горы" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Горы</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/item2.jpg" alt="Горы Домбая" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Поля</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/leto.jpeg" alt="Лето" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Лето</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/les.jpeg" alt="Леса" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Леса</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/Ozero.jpeg" alt="Озеро" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Озера</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/Sneg.jpng.jpeg" alt="Зима" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Зима</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/Ur.jpeg" alt="Ураган" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Ураганы</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/regnumpicture.jpeg" alt="Гроза" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Грозы</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="image/item3.jpg" alt="Туман" style="width:100%">
+                <div class="element__container">
+                    <p class="element__title">Туман</p>
+                    <button class="element__like-button"></button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!--Блок footer-->
+    <footer class="footer">
+        <p class="footer__text">
+            © 2023 Mesto Russia
+        </p>
+    </footer>
+    <!--Блок pop-up-->
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close-button"></button>
+
+            <form class="popup__form" name="edit-profile">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <label class="popup__field">
+                    <input type="text" class="popup__input" id="name" name="name" placeholder="Имя" minlength="2"
+                        maxlength="40" required>
+                    <span class="popup__input-error"></span>
+                </label>
+                <label class="popup__field">
+                    <input type="text" class="popup__input" id="job" name="job" placeholder="О себе" minlength="2"
+                        maxlength="200" required>
+                    <span class="popup__input-error"></span>
+                </label>
+                <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

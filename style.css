@@ -1,0 +1,283 @@
+.page {
+    background: #000000;
+    margin: 0 auto;
+    max-width: 880px;
+}
+
+.header {
+    padding: 46px 0 40px 0;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.header__logo {
+    display: flex;
+}
+
+.profile {
+    padding: 40px 0 0 0;
+    display: flex;
+    max-height: 120px;
+    justify-content: space-between;
+}
+
+.profile__avatar {
+    border-radius: 50%;
+
+}
+
+
+.profile__name {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    /*нужно изменить на 500*/
+    font-size: 42px;
+    line-height: 48px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.profile__title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.profile__container {
+    display: flex;
+    gap: 28px;
+}
+
+.profile__info {
+    gap: 16px 18px;
+    align-items: center;
+    display: grid;
+    grid-template-rows: 39px 19px;
+    grid-template-columns: 2fr .1fr;
+    grid-auto-rows: auto;
+    align-self: center;
+}
+
+.profile__button {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    width: 24px;
+    height: 24px;
+    align-self: end;
+    cursor: pointer;
+}
+
+
+.profile__button:hover {
+    opacity: 0.6
+}
+
+.profile__add-button {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    width: 150px;
+    height: 50px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.profile__add-button:hover{
+    opacity: 0.6
+}
+
+.element {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    max-width: 282px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    grid-template-rows: 282px 79px;
+    display: grid;
+    align-items: center;
+}
+.elements{
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 20px 17px;
+    grid-template-columns: repeat(auto-fit, 282px);
+    padding: 50px 0 0 0;
+}
+
+.element__button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.element__image {
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    width: 282px;
+    height: 283px;
+}
+
+.element__like-button {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    grid-column-start: 4;
+    align-self: center;
+}
+
+.element__like-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 19px;
+    background-image: url(image/Group.svg);
+    background-size: cover;
+}
+
+.element__like-button:active::before {
+    filter: brightness(0.7);
+}
+
+.element__like-button:hover{
+    opacity: 0.5;
+}
+
+
+
+
+.element__title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+
+}
+
+.element__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 15px 0 21px;
+}
+
+.footer__text {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.footer {
+    height: 18px;
+    margin: 66px 0 60px 0;
+}
+
+
+.popup {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup_opened {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup__container {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    width: 430px;
+    height: 330px;
+}
+
+.popup__close-button {
+    position: absolute;
+    top: -35px;
+    left: 655px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    background-image: url(image/CloseIcon.svg);
+    border: none;
+    cursor: pointer;
+
+
+}
+
+.popup__title {
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+}
+
+.popup__form {
+    display: flex;
+    flex-direction: column;
+    padding: 34px;
+}
+
+.popup__field {
+    Width: 358px;
+    opacity: 0.2;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.popup__input {
+    padding: 25px 0 0;
+    border: none;
+    width: 100%;
+}
+
+.popup__button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 358px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin: 48px 0 0;
+}
+
+.popup__button:hover {
+    background: #000000;
+    opacity: 0.8;
+    border-radius: 2px;
+}
