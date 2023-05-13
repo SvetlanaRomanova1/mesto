@@ -38,7 +38,7 @@
             </button>
         </section>
         <!--Блок Element-->
-        <section class="elements">
+        <section class="elements ">
             <div class="element">
                 <img class="element__image" src="image/Dombay.jpg" alt="Горы" style="width:100%">
                 <div class="element__container">
@@ -106,21 +106,20 @@
         </section>
     </main>
     <!--Блок footer-->
-    <footer class="footer">
+    <footer class="footer ">
         <p class="footer__text">
             © 2023 Mesto Russia
         </p>
     </footer>
     <!--Блок pop-up-->
     <section class="popup">
+        <button class="popup__close-button"></button>
         <div class="popup__container">
-            <button class="popup__close-button"></button>
-
             <form class="popup__form" name="edit-profile">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <label class="popup__field">
                     <input type="text" class="popup__input" id="name" name="name" placeholder="Имя" minlength="2"
-                        maxlength="40" required>
+                        maxlength="40">
                     <span class="popup__input-error"></span>
                 </label>
                 <label class="popup__field">
