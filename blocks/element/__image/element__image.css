@@ -1,0 +1,6 @@
+.element__image {
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    width: 282px;
+    height: 283px;
+}

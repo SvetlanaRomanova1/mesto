@@ -1,0 +1,30 @@
+.element__like-button {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    grid-column-start: 4;
+    align-self: center;
+}
+
+.element__like-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 19px;
+    background-image: url(../../../image/Group.svg);
+    background-size: cover;
+}
+
+.element__like-button:hover {
+    opacity: 0.5;
+}
+
+.element__like-button:active:before {
+    filter: brightness(0.7);
+}

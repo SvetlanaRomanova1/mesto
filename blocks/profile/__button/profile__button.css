@@ -1,0 +1,23 @@
+.profile__button {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    width: 24px;
+    height: 24px;
+    align-self: end;
+    cursor: pointer;
+    margin: 0 0 2px 0;
+}
+
+.profile__button:hover {
+    opacity: 0.6
+}
+
+@media screen and (max-width: 420px) {
+    .profile__button {
+        height: 18px;
+        width: 18px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+}

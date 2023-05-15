@@ -1,0 +1,24 @@
+.footer__text {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .footer__text {
+        max-width: 580px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .footer__text {
+        max-width: 282px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
