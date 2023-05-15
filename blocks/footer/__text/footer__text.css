@@ -15,7 +15,7 @@
     }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 640px) {
     .footer__text {
         max-width: 282px;
         font-size: 14px;
