@@ -13,7 +13,7 @@
     margin: 48px 0 0;
 }
 
-.popup__button:hover {
+.popup__button:hover:before {
     background: #000000;
     opacity: 0.8;
     border-radius: 2px;

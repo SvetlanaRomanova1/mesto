@@ -1,7 +1,7 @@
 .element__like-button {
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     background-color: transparent;
     border: none;
     outline: none;
@@ -16,15 +16,13 @@
     top: 0;
     left: 0;
     width: 22px;
-    height: 19px;
-    background-image: url(../../../image/Group.svg);
-    background-size: cover;
+    height: 20px;
+    background-image: url(../../../image/disabled-like.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .element__like-button:hover {
     opacity: 0.5;
 }
 
-.element__like-button:active:before {
-    filter: brightness(0.7);
-}
