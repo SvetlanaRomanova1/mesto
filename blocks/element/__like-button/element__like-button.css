@@ -1,0 +1,28 @@
+.element__like-button {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    grid-column-start: 4;
+    align-self: center;
+}
+
+.element__like-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 20px;
+    background-image: url(../../../image/disabled-like.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.element__like-button:hover {
+    opacity: 0.5;
+}
+
