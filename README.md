@@ -18,6 +18,6 @@
 
 
 Ссылки:
-   * Ссылка на макет в Figma
-   * Ссылка на проект на GitHub Pages
+   * Ссылка на макет в Figma: https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?type=design&node-id=0-1&t=b0MXmOtPyrZ17xlM-0
+   * Ссылка на проект на GitHub Pages: https://svetlanaromanova1.github.io/mesto/
    
