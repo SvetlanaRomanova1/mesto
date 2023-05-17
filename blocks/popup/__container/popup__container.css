@@ -3,14 +3,13 @@
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     position: relative;
-    min-width: 282px;
-    max-width: 430px;
+    min-width: 17.625rem;
+    max-width: 26.875rem;
     width: 100%;
 }
 
 @media screen and (max-width: 540px) {
     .popup__container{
-        max-width: 238px;
-        margin: 123px auto auto auto;
+        max-width: 14.875rem;
     }
 }

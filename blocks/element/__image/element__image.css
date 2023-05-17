@@ -1,7 +1,7 @@
 .element__image {
     border-radius: 10px 10px 0 0;
     cursor: pointer;
-    width: 282px;
-    height: 283px;
+    width: 17.625rem;
+    height: 17.6875rem;
     object-fit: cover;
 }

@@ -1,12 +1,12 @@
 .profile__add-button {
     border: 2px solid #FFFFFF;
-    width: 150px;
+    width: 9.375rem;
     align-self: center;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 23px;
+    padding: 1.4375rem;
     background: transparent url("../../../image/plus-image.svg") no-repeat center;
     border-radius: 2px;
 }
@@ -17,8 +17,8 @@
 
 @media screen and (max-width: 760px) {
     .profile__add-button {
-        width: 282px;
-        padding: 23px;
+        width: 17.625rem;
+        padding: 1.4375rem;
         background-size: 16px;
     }
 }

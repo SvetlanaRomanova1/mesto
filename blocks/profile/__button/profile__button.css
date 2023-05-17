@@ -1,13 +1,11 @@
 .profile__button {
-    background-color: transparent;
-    border: 0 solid #FFFFFF;
-    width: 24px;
-    height: 24px;
+    border: 1px solid #FFFFFF;
+    width: 1.5rem;
+    height: 1.5rem;
     align-self: end;
     cursor: pointer;
-    margin: 0 0 2px 0;
-    background-image: url(/image/edit-button.svg);
-    background-size: cover;
+    margin: 0 0 0.125rem 0;
+    background: transparent url(../../../image/editing-button.svg) no-repeat center;
 }
 
 .profile__button:hover {
@@ -16,8 +14,8 @@
 
 @media screen and (max-width: 420px) {
     .profile__button {
-        height: 18px;
-        width: 18px;
+        height: 1.125rem;
+        width: 1.125rem;
         align-items: center;
         justify-content: center;
         display: flex;

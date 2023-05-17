@@ -1,5 +1,5 @@
 @media screen and (max-width: 760px) {
     .profile__image {
-        height: 16px;
+        height: 1rem;
     }
 }

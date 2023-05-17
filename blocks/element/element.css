@@ -1,10 +1,10 @@
 .element {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    max-width: 282px;
+    max-width: 17.625rem;
     text-align: center;
     background-color: #FFFFFF;
-    border-radius: 10px;
-    grid-template-rows: 282px 80px;
+    border-radius: 0.625rem;
+    grid-template-rows: 17.625rem 5rem;
     display: grid;
     align-items: center;
 }
