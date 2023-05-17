@@ -5,6 +5,10 @@
     line-height: 22px;
     color: #FFFFFF;
     margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 336px;
 }
 
 @media screen and (max-width: 760px) {
@@ -15,7 +19,7 @@
 
 @media screen and (max-width: 420px) {
     .profile__title {
-        text-align: center;
+
         font-size: 14px;
         line-height: 17px;
         grid-column-start: 1;

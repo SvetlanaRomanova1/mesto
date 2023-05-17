@@ -1,11 +1,13 @@
 .profile__button {
-    background: transparent;
-    border: 1px solid #FFFFFF;
+    background-color: transparent;
+    border: 0 solid #FFFFFF;
     width: 24px;
     height: 24px;
     align-self: end;
     cursor: pointer;
     margin: 0 0 2px 0;
+    background-image: url(/image/edit-button.svg);
+    background-size: cover;
 }
 
 .profile__button:hover {

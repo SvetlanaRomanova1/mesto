@@ -53,7 +53,7 @@ function handleEditButton() {
     let profileTitle = document.querySelector('.profile__title');
     nameInput.value = profileName.textContent;
     jobInput.value = profileTitle.textContent;
-    popup.className = 'popup popup_opened';
+    popup.classList.add('popup_opened');
 }
 
 
@@ -62,7 +62,7 @@ profileButton.addEventListener('click', handleEditButton);
 
 // Обработчик нажатия кнопки закрыть
 function handleCloseButton() {
-    popup.className = 'popup';
+    popup.classList.remove('popup_opened');
 }
 
 closeButton.addEventListener('click', handleCloseButton);
