@@ -15,12 +15,10 @@ function handleFormSubmit(evt) {
     // Получите значение полей jobInput и nameInput из свойства value
     const nameValue = nameInput.value;
     const jobValue = jobInput.value;
-    console.log({nameInput, jobInput, nameValue, jobValue});
 
     // Выберите элементы, куда должны быть вставлены значения полей
     let profileName = document.querySelector('.profile__name');
     let profileTitle = document.querySelector('.profile__title');
-    console.log({profileName, profileTitle})
 
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameValue;
