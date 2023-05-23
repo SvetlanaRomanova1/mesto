@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
 <body class="page">
@@ -32,13 +33,16 @@
         <section class="elements" aria-label="Фотогалерея">
             <div class="element">
                 <img class="element__image" src="image/dombay-image.jpg" alt="Горы">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Горы</h4>
                     <button id="like" class="element__like-button" type="button" aria-label="Лайк"></button>
+
                 </div>
             </div>
             <div class="element ">
                 <img class="element__image" src="image/fields-image.jpg" alt="Поля">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Поля</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -46,6 +50,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/summer-image.jpeg" alt="Лето" >
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Лето</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -53,6 +58,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/forest-image.jpeg" alt="Леса">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Леса</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -60,6 +66,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/lake-image.jpeg" alt="Озеро" >
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Озера</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -67,6 +74,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/winter-image.jpeg" alt="Зима">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Зима</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -74,6 +82,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/hurricane-image.jpeg" alt="Ураган">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Ураганы</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -81,6 +90,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/storm-image.jpeg" alt="Гроза">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Грозы</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -88,6 +98,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/fog-image.jpg" alt="Туман">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Туман</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -95,6 +106,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/sea-images.jpeg" alt="Море">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Море</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -102,6 +114,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/elbrus-image.jpg" alt="Эльбрус">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Эльбрус</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -109,6 +122,7 @@
             </div>
             <div class="element">
                 <img class="element__image" src="image/shine-image.jpeg" alt="Северное сияние">
+                <button class="element__delete-button" type="button" aria-label="Корзина"></button>
                 <div class="element__container">
                     <h4 class="element__title">Северное сияние</h4>
                     <button class="element__like-button" type="button" aria-label="Лайк"></button>
@@ -141,7 +155,8 @@
             </form>
         </div>
     </div>
-    <script src="index.js"></script>
+
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>
