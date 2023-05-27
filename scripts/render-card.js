@@ -6,7 +6,9 @@ import {addListenerRemoveCard} from "./remove-card.js";
 // Отображение карточки
 export function renderCard(name, link) {
     const cardElement = elements.cardTemplate.querySelector('.card').cloneNode(true);
-    cardElement.querySelector('.card__image').src = link;
+    const image = cardElement.querySelector('.card__image');
+    image.src = link;
+    image.alt = name;
     cardElement.querySelector('.card__title').textContent = name;
     addListenerLikeButton(cardElement);
     addListenerOpenImage(cardElement);
