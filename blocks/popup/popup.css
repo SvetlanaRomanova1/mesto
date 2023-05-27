@@ -7,6 +7,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
+    transition: opacity .4s ease-out;
     display: flex;
     align-items: center;
     justify-content: center;

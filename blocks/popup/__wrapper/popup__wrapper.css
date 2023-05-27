@@ -1,0 +1,8 @@
+.popup__wrapper {
+    max-width: 816px;
+    max-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    margin: 90px auto 90px auto;
+    position: relative;
+}

@@ -1,12 +1,20 @@
-import {initialCards} from './data.js';
+import './scripts/init.js';
+import "./scripts/like-button.js";
+import './scripts/data.js';
+import './scripts/like-button.js';
+import './scripts/open-clolse-pictures.js';
+import {createNewCard} from './scripts/create-new-card.js';
+import {appNodeElements} from './scripts/app-node-elements.js'
+import {
+    changeAttributeForm,
+    changeNameSaveButton,
+    changePlaceholders,
+    changePopupTitle,
+} from "./scripts/helper.js";
 
-console.log({initialCards})
-
-// Находим форму в DOM
-const formElement = document.querySelector('.popup__form');
 // Находим поля формы в DOM
-const nameInput = document.querySelector('#name');
-const jobInput = document.querySelector('#job');
+const nameInput = appNodeElements.nameInput;
+const jobInput = appNodeElements.jobInput;
 
 // Сохранения профиля
 function saveProfileInfo() {
@@ -14,8 +22,8 @@ function saveProfileInfo() {
     const nameValue = nameInput.value;
     const jobValue = jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
-    let profileName = document.querySelector('.profile__name');
-    let profileTitle = document.querySelector('.profile__title');
+    let profileName = appNodeElements.profileName;
+    let profileTitle = appNodeElements.profileTitle;
 
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameValue;
@@ -25,39 +33,17 @@ function saveProfileInfo() {
 // Обработчик «отправки» формы
 function handleFormSubmit(evt) {
     evt.preventDefault();
-    const attributeForm = formElement.getAttribute('name');
+    const attributeForm = appNodeElements.formElement.getAttribute('name');
     if (attributeForm === 'edit-profile') {
         saveProfileInfo();
     } else {
-        console.log('создать');
+        createNewCard(nameInput.value, jobInput.value);
     }
     handleCloseButton();
 }
 
 // Прикрепляем обработчик к форме:
-formElement.addEventListener('submit', handleFormSubmit);
-
-//Находим кнопку редактировать
-let profileButton = document.querySelector('.profile__button');
-
-// Находим кнопку добавить место
-const profileAddButton = document.querySelector('.profile__add-button');
-
-// Находим элемент popup
-let popup = document.querySelector('#popup');
-
-// Находим элемент close-button
-let closeButton = document.querySelector('#closeButton');
-
-// Находим все элемент like-button
-let likeButtons = document.querySelectorAll('.element__like-button');
-
-// Находим элемент element
-let element = document.querySelectorAll('.element');
-
-// Находим кнопку delete-button
-let deleteButtons = document.querySelectorAll('.element__delete-button');
-
+appNodeElements.formElement.addEventListener('submit', handleFormSubmit);
 
 // Обработчик нажатия кнопки редактировать
 function handleEditButton() {
@@ -65,73 +51,20 @@ function handleEditButton() {
     changePlaceholders(['Имя', 'О себе']);
     changeNameSaveButton('Сохранить');
     changeAttributeForm('edit-profile')
-    let profileName = document.querySelector('.profile__name');
-    let profileTitle = document.querySelector('.profile__title');
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileTitle.textContent;
-    popup.classList.add('popup_opened');
+    nameInput.value = appNodeElements.profileName.textContent;
+    jobInput.value = appNodeElements.profileTitle.textContent;
+    appNodeElements.popup.classList.add('popup_opened');
 }
 
-// Изменения заголовка
-function changePopupTitle(title) {
-    const popupTitle = document.querySelector('.popup__title');
-    popupTitle.textContent = title;
-}
-
-// Изменение атрибута формы
-function changeAttributeForm(name) {
-    formElement.setAttribute('name', name);
-}
-
-// Изменение названия плейсхолдера popup__field
-function changePlaceholders(array) {
-    const popupField = document.querySelectorAll('.popup__field input');
-    Array.from(popupField).forEach((input, i) => {
-        input.placeholder = array[i] || ''
-    })
-}
-
-// Изменения названия кнопки сохранить
-function changeNameSaveButton(title) {
-    const saveButton = document.querySelector('.popup__button');
-    saveButton.textContent = title;
-}
-
-profileButton.addEventListener('click', handleEditButton);
-
-// Обработчик нажатия кнопки добавить новое место
-function handleAddButton() {
-    changePopupTitle('Новое место');
-    changePlaceholders(['Название', 'Ссылка на картинку']);
-    changeNameSaveButton('Создать');
-    changeAttributeForm('create');
-    nameInput.value = '';
-    jobInput.value = '';
-    popup.classList.add('popup_opened');
-}
-
-profileAddButton.addEventListener('click', handleAddButton)
+appNodeElements.profileButton.addEventListener('click', handleEditButton);
 
 // Обработчик нажатия кнопки закрыть
 function handleCloseButton() {
-    popup.classList.remove('popup_opened');
+    appNodeElements.popup.classList.remove('popup_opened');
 }
 
-closeButton.addEventListener('click', handleCloseButton);
 
-// Обработчик нажатия кнопки like-button
-function handleLikeButton(event) {
-    const button = event.target;
-    if (button.className.includes('element__like-button_active')) {
-        return button.className = 'element__like-button'
-    }
-    return button.className = 'element__like-button element__like-button_active'
-}
-
-Array.from(likeButtons).forEach((el) => {
-    el.addEventListener('click', handleLikeButton)
-});
-
+appNodeElements.closeButton.addEventListener('click', handleCloseButton);
 
 // Обработчик нажатия кнопки delete-button
 function handleDeleteButton(event) {
@@ -139,13 +72,6 @@ function handleDeleteButton(event) {
     card.remove();
 }
 
-deleteButtons.forEach(deleteButton => {
+appNodeElements.deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', handleDeleteButton);
 });
-
-
-
-
-
-
-
