@@ -1,4 +1,4 @@
-.elements {
+.cards {
     margin: 0 auto;
     display: grid;
     grid-gap: 1.25rem 1.0625rem;
@@ -6,19 +6,19 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .elements {
+    .cards {
         max-width: 36.3125rem;
     }
 }
 
 @media screen and (max-width: 940px) {
-    .elements {
+    .cards {
         justify-content: center;
     }
 }
 
 @media screen and (max-width: 640px) {
-    .elements {
+    .cards {
         max-width: 17.625rem;
     }
 }

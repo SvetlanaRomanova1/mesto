@@ -1,4 +1,4 @@
-export const appNodeElements = {
+export const elements = {
     // Поле input
     nameInput:  document.querySelector('#name'),
     // Поле input
@@ -12,13 +12,13 @@ export const appNodeElements = {
     // Кнопка - добавить место
     profileAddButton: document.querySelector('.profile__add-button'),
     // Контейнер галерея
-    elements: document.querySelector('.elements'),
+    cards: document.querySelector('.cards'),
     // Модальное окно формы
-    popup: document.querySelector('#popup'),
-    // Элемент close-button
-    closeButton: document.querySelector('.popup__close-button'),
+    popupForm: document.querySelector('#popup-form'),
+    // Кнопка закрытия формы профиль
+    closeButton: document.querySelector('#close-button-profile'),
     // Кнопка удаления картинки-delete-button
-    deleteButtons: document.querySelectorAll('.element__delete-button'),
+    deleteButtons: document.querySelectorAll('.card__delete-button'),
     //Кнопка закрытия картинки-cross-button
     crossButton: document.querySelector('.popup__cross-button'),
     //Элемент картинка-popup__image
@@ -27,7 +27,14 @@ export const appNodeElements = {
     textElement: document.querySelector('.popup__text'),
     //Элемент затемнения-popup__overlay
     popupOverlay: document.querySelector('.popup_overlay'),
-    //Форма в DOM-элементе
-    formElement: document.querySelector('.popup__form'),
-
+    //Шаблон card-template
+    cardTemplate: document.querySelector('#card-template').content,
+    // Текстовое поле формы - место
+    place: document.querySelector('#place'),
+    // Ссылка на картинку фомы - место
+    linkPlace: document.querySelector('#link'),
+    // Форма добавить место
+    popupAddPlace: document.querySelector('#popup-add'),
+    // Кнопка закрытия формы место
+    closeButtonPlace: document.querySelector('#close-button')
 }

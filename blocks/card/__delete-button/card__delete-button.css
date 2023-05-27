@@ -1,4 +1,4 @@
-.element__delete-button{
+.card__delete-button{
     background-image: url("../../../image/delete-button.svg");
     background-size: contain;
     background-repeat: no-repeat;
@@ -12,6 +12,6 @@
     right: 20px;
 }
 
-.element__delete-button:hover{
+.card__delete-button:hover{
     opacity: 0.5;
 }
