@@ -26,7 +26,7 @@ export const appNodeElements = {
     //Элемент названия после открытия картинки-popup__text
     textElement: document.querySelector('.popup__text'),
     //Элемент затемнения-popup__overlay
-    popupOverlay: document.querySelector('.popup__overlay'),
+    popupOverlay: document.querySelector('.popup_overlay'),
     //Форма в DOM-элементе
     formElement: document.querySelector('.popup__form'),
 
