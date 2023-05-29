@@ -1,16 +1,17 @@
 import {elements} from "./elements.js";
 import {renderCard} from "./render-card.js";
+import {closePopup, openPopup} from "./helper.js";
 
 // Обработчик кнопки добавить новое место
 function handleOpenPopup() {
-    elements.popupAddPlace.classList.add('popup_opened')
+    openPopup(elements.popupAddPlace);
 }
 
 elements.profileAddButton.addEventListener('click', handleOpenPopup);
 
 // Обработчик кнопки закрыть
 function handleCloseButton(){
-    elements.popupAddPlace.classList.remove('popup_opened')
+    closePopup(elements.popupAddPlace);
 }
 
 elements.closeButtonPlace.addEventListener('click', handleCloseButton);
@@ -18,8 +19,9 @@ elements.closeButtonPlace.addEventListener('click', handleCloseButton);
 // Обработчик «отправки» формы
 function handleFormSubmit(evt) {
     evt.preventDefault();
-    renderCard(elements.place.value, elements.linkPlace.value)
+    renderCard(elements.place.value, elements.linkPlace.value);
     handleCloseButton();
+    elements.popupAddPlace.querySelector('form').reset(); // Очищаем поля формы
 }
 
-elements.popupAddPlace.querySelector('form').addEventListener('submit', handleFormSubmit)
+elements.popupAddPlace.querySelector('form').addEventListener('submit', handleFormSubmit);

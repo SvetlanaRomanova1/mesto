@@ -38,7 +38,7 @@
         </p>
     </footer>
     <!--Блок pop-up-->
-    <!--Модальное окно редактировать-->
+    <!--Модальное окно-редактировать-->
     <div class="popup" id="popup-form">
         <div class="popup__container">
             <form class="popup__form" name="edit-profile">
@@ -56,7 +56,7 @@
             </form>
         </div>
     </div>
-    <!--Модальное окно добавить место-->
+    <!--Модальное окно-добавить место-->
     <div class="popup" id="popup-add">
         <div class="popup__container">
             <form class="popup__form" name="add-place">
@@ -75,7 +75,7 @@
             </form>
         </div>
     </div>
-<!--Открытие картинки-->
+<!--Модальное окно-открытие картинки-->
     <div class="popup popup_overlay">
         <div class="popup__wrapper">
             <button type="button" class="popup__cross-button"></button>
@@ -83,15 +83,16 @@
             <p class="popup__text"></p>
         </div>
     </div>
+    <!--Отображение новых фотокарточек-->
     <template id="card-template" aria-label="Фотокарточка">
-        <div class="card">
+        <article class="card">
             <img class="card__image" src="#" alt="#">
             <button class="card__delete-button" type="button" aria-label="Корзина"></button>
             <div class="card__container">
                 <h4 class="card__title"></h4>
                 <button class="card__like-button" type="button" aria-label="Лайк"></button>
             </div>
-        </div>
+        </article>
     </template>
     <script src="scripts/index.js" type="module"></script>
 </body>

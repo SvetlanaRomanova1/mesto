@@ -1,17 +1,18 @@
 import {elements} from "./elements.js";
+import {closePopup, openPopup} from "./helper.js";
 
 // Обработчик нажатия кнопки редактировать
 function handleEditButton() {
     elements.nameInput.value = elements.profileName.textContent;
     elements.jobInput.value = elements.profileTitle.textContent;
-    elements.popupForm.classList.add('popup_opened');
+    openPopup(elements.popupForm);
 }
 
 elements.profileButton.addEventListener('click', handleEditButton);
 
 // Обработчик нажатия кнопки закрыть
-function handleCloseButton() {
-    elements.popupForm.classList.remove('popup_opened');
+function handleCloseButton(){
+    closePopup(elements.popupForm);
 }
 
 elements.closeButton.addEventListener('click', handleCloseButton);
@@ -22,7 +23,7 @@ function saveProfileInfo() {
     const nameValue = elements.nameInput.value;
     const jobValue = elements.jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
-    let profileName = elements.profileName;
+    const profileName = elements.profileName;
     const profileTitle = elements.profileTitle;
 
     // Вставьте новые значения с помощью textContent

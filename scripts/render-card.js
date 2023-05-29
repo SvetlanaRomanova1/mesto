@@ -3,8 +3,8 @@ import {addListenerLikeButton} from "./like-button.js";
 import {addListenerOpenImage} from "./open-picture.js";
 import {addListenerRemoveCard} from "./remove-card.js";
 
-// Отображение карточки
-export function renderCard(name, link) {
+// Создание карточки
+function createNewCard(name, link) {
     const cardElement = elements.cardTemplate.querySelector('.card').cloneNode(true);
     const image = cardElement.querySelector('.card__image');
     image.src = link;
@@ -13,5 +13,12 @@ export function renderCard(name, link) {
     addListenerLikeButton(cardElement);
     addListenerOpenImage(cardElement);
     addListenerRemoveCard(cardElement);
-    elements.cards.prepend(cardElement);
+    return cardElement;
 }
+
+// Отображение карточки
+export function renderCard(name, link) {
+    const newCard = createNewCard(name, link);
+    elements.cards.prepend(newCard);
+}
+

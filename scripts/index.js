@@ -9,4 +9,4 @@ import {renderCard} from "./render-card.js";
 
 initialCards.forEach(function (item){
     renderCard(item.name, item.link)
-})
+});
