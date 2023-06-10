@@ -1,7 +1,7 @@
 export const elements = {
-    // Поле input
+    // Поле input имя
     nameInput:  document.querySelector('#name'),
-    // Поле input
+    // Поле input о себе
     jobInput: document.querySelector('#job'),
     // Профиль - имя
     profileName: document.querySelector('.profile__name'),
@@ -36,5 +36,9 @@ export const elements = {
     // Форма добавить место
     popupAddPlace: document.querySelector('#popup-add'),
     // Кнопка закрытия формы место
-    closeButtonPlace: document.querySelector('#close-button')
+    closeButtonPlace: document.querySelector('#close-button'),
+    // Кнопка Сохранить профиль
+    saveProfileButton: document.querySelector('#save-profile'),
+    // Кнопка Создать место
+    addNewLocation: document.querySelector('#create-place'),
 }

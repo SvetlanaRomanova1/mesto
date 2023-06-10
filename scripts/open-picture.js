@@ -17,6 +17,7 @@ function handleCloseButton() {
 
 elements.crossButton.addEventListener('click', handleCloseButton);
 
-export function addListenerOpenImage(div) {
+// Добавление обработчика клика на изображение в переданном div элементе
+ export function addListenerOpenImage(div) {
     div.querySelector('img').addEventListener('click', handleClickImage);
 }

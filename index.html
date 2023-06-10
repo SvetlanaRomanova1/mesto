@@ -41,41 +41,44 @@
     <!--Модальное окно-редактировать-->
     <div class="popup" id="popup-form">
         <div class="popup__container">
-            <form class="popup__form" name="edit-profile">
+            <form class="popup__form" name="edit-profile" novalidate>
                 <button type="button" id="close-button-profile" class="popup__close-button"></button>
                 <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
                 <label class="popup__field">
-                    <input type="text" class="popup__input" id="name" name="name" placeholder="Имя" minlength="2">
-                    <span class="popup__input-error"></span>
+                    <input type="text" class="popup__input" id="name" name="name" placeholder="Имя" minlength="2"
+                        maxlength="40" required>
+                    <span class="popup__error_visible"></span>
                 </label>
                 <label class="popup__field">
-                    <input type="text" class="popup__input" id="job" name="job" placeholder="О себе" minlength="2">
-                    <span class="popup__input-error"></span>
+                    <input type="text" class="popup__input" id="job" name="job" placeholder="О себе" minlength="2"
+                        maxlength="200" required>
+                    <span class="popup__error_visible"></span>
                 </label>
-                <button type="submit" class="popup__button">Сохранить</button>
+                <button type="submit" class="popup__button" id="save-profile">Сохранить</button>
             </form>
         </div>
     </div>
     <!--Модальное окно-добавить место-->
     <div class="popup" id="popup-add">
         <div class="popup__container">
-            <form class="popup__form" name="add-place">
+            <form class="popup__form" name="add-place" novalidate>
                 <button type="button" id="close-button" class="popup__close-button"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <label class="popup__field">
-                    <input type="text" class="popup__input" id="place" name="place" placeholder="Название" minlength="2">
-                    <span class="popup__input-error"></span>
+                    <input type="text" class="popup__input" id="place" name="place" placeholder="Название" minlength="2"
+                        maxlength="30" required>
+                    <span class="popup__error_visible"></span>
                 </label>
                 <label class="popup__field">
                     <input type="url" class="popup__input" id="link" name="link" placeholder="Ссылка на картинку"
-                           minlength="2">
-                    <span class="popup__input-error"></span>
+                        required>
+                    <span class="popup__error_visible"></span>
                 </label>
-                <button type="submit" class="popup__button">Создать</button>
+                <button type="submit" class="popup__button" id="create-place">Создать</button>
             </form>
         </div>
     </div>
-<!--Модальное окно-открытие картинки-->
+    <!--Модальное окно-открытие картинки-->
     <div class="popup popup_overlay">
         <div class="popup__wrapper">
             <button type="button" class="popup__cross-button"></button>
@@ -95,6 +98,7 @@
         </article>
     </template>
     <script src="scripts/index.js" type="module"></script>
+    <script src="scripts/validate.js" type="module"></script>
 </body>
 
 </html>

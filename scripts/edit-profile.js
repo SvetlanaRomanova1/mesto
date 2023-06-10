@@ -1,32 +1,66 @@
-import {elements} from "./elements.js";
-import {closePopup, openPopup} from "./helper.js";
+import { elements } from "./elements.js";
+import { closePopup, openPopup } from "./helper.js";
 
-// Обработчик нажатия кнопки редактировать
+// Сброс состояния ошибки для указанного поля
+function resetErrorState(input, isInputValid) {
+    const errorSpan = input.parentNode.querySelector(`.popup__error_visible`);
+    errorSpan.textContent = input.validationMessage;
+    input.classList.toggle('popup__input_type_error', !isInputValid);
+}
+
+// Скрытие ошибки для указанного поля
+function hideError(input, className) {
+    input.classList.remove(className);
+    resetErrorState(input, true);
+}
+
+// Сброс состояния кнопки
+function resetButton(button, isFormValid) {
+    button.disabled = !isFormValid;
+    button.classList.toggle('popup__button_disabled', !isFormValid);
+}
+
+// Обработчик нажатия кнопки "Редактировать"
 function handleEditButton() {
+    // Заполнение полей формы текущими значениями профиля
     elements.nameInput.value = elements.profileName.textContent;
     elements.jobInput.value = elements.profileTitle.textContent;
+
+    // Скрытие ошибок во всех полях формы
+    Array.from(elements.popupForm.querySelectorAll('input')).forEach(input => {
+        hideError(input, 'popup__input_type_error');
+    });
+
+    // Сброс состояния кнопки
+    resetButton(elements.saveProfileButton, true);
+
+    // Открытие попапа с формой
     openPopup(elements.popupForm);
 }
 
+// Добавление обработчика события на кнопку "Редактировать"
 elements.profileButton.addEventListener('click', handleEditButton);
 
-// Обработчик нажатия кнопки закрыть
-function handleCloseButton(){
+// Обработчик нажатия кнопки "Закрыть"
+function handleCloseButton() {
+    // Закрытие попапа с формой
     closePopup(elements.popupForm);
 }
 
+// Добавление обработчика события на кнопку "Закрыть"
 elements.closeButton.addEventListener('click', handleCloseButton);
 
-// Сохранения профиля
+// Сохранение информации профиля
 function saveProfileInfo() {
-    // Получите значение полей jobInput и nameInput из свойства value
+    // Получение значений полей jobInput и nameInput из свойства value
     const nameValue = elements.nameInput.value;
     const jobValue = elements.jobInput.value;
-    // Выберите элементы, куда должны быть вставлены значения полей
+
+    // Выбор элементов, куда должны быть вставлены значения полей
     const profileName = elements.profileName;
     const profileTitle = elements.profileTitle;
 
-    // Вставьте новые значения с помощью textContent
+    // Обновление значений textContent
     profileName.textContent = nameValue;
     profileTitle.textContent = jobValue;
 }
@@ -38,5 +72,5 @@ function handleFormSubmit(evt) {
     handleCloseButton();
 }
 
-// Прикрепляем обработчик к форме:
+// Прикрепление обработчика к форме
 elements.popupForm.querySelector('form').addEventListener('submit', handleFormSubmit);

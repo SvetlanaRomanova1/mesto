@@ -14,7 +14,7 @@
     border-radius: 2px;
 }
 
-.popup__button:hover {
+.popup__button:not(:disabled):hover {
     background: #000000;
     opacity: 0.8;
 }
