@@ -3,7 +3,7 @@ import { closePopup, openPopup } from "./helper.js";
 
 // Сброс состояния ошибки для указанного поля
 function resetErrorState(input, isInputValid) {
-    const errorSpan = input.parentNode.querySelector(`.popup__error_visible`);
+    const errorSpan = input.parentNode.querySelector(`.popup__error-visible`);
     errorSpan.textContent = input.validationMessage;
     input.classList.toggle('popup__input_type_error', !isInputValid);
 }
