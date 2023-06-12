@@ -1,3 +1,17 @@
+// Функция для установки состояния ошибки в поле ввода
+function setErrorState(input, isInputValid, errorClass, inputErrorClass) {
+    const errorSpan = input.parentNode.querySelector(`.${errorClass}`);
+    errorSpan.textContent = input.validationMessage;
+    input.classList.toggle(inputErrorClass, !isInputValid);
+}
+
+// Функция для установки состояния кнопки отправки формы
+export function setSubmitButtonState(button, isFormValid, inactiveButtonClass) {
+    button.disabled = !isFormValid;
+    button.classList.toggle(inactiveButtonClass, !isFormValid);
+}
+
+
 function enableValidation(config) {
     const {
         inputSelector,
@@ -7,21 +21,8 @@ function enableValidation(config) {
         errorClass
     } = config;
 
-// Получаем все элементы input
+    // Получаем все элементы input
     const inputs = document.querySelectorAll(inputSelector);
-
-    // Функция для установки состояния ошибки в поле ввода
-    function setErrorState(input, isInputValid) {
-        const errorSpan = input.parentNode.querySelector(`.${errorClass}`);
-        errorSpan.textContent = input.validationMessage;
-        input.classList.toggle(inputErrorClass, !isInputValid);
-    }
-
-    // Функция для установки состояния кнопки отправки формы
-    function setSubmitButtonState(button, isFormValid) {
-        button.disabled = !isFormValid;
-        button.classList.toggle(inactiveButtonClass, !isFormValid);
-    }
 
     // Функция обработки события изменения в поле ввода
     function handleInputChange(event) {
@@ -31,14 +32,23 @@ function enableValidation(config) {
         const submitButton = form.querySelector(submitButtonSelector);
 
         // Состояние кнопки отправки формы на основе валидности формы
-        setSubmitButtonState(submitButton, form.checkValidity());
-        setErrorState(input, isInputValid);
+        setSubmitButtonState(submitButton, form.checkValidity(), inactiveButtonClass);
+        setErrorState(input, isInputValid, errorClass, inputErrorClass);
     }
+
     // Слушатель событий input для всех элементов input
     Array.from(inputs).forEach((input) => {
         input.addEventListener('input', handleInputChange);
     });
+
+    // Деактивировать кнопки сабмита всех форм
+    // Получаем все кнопки отправки форм
+    const submitButtons = document.querySelectorAll(submitButtonSelector);
+    Array.from(submitButtons).forEach(button => {
+        setSubmitButtonState(button, false, inactiveButtonClass);
+    });
 }
+
 // Вызов функции enableValidation с нужной конфигурацией
 enableValidation({
     formSelector: '.popup__form',
