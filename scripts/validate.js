@@ -6,20 +6,18 @@ function setErrorState(input, isInputValid, errorClass, inputErrorClass) {
 }
 
 // Функция для установки состояния кнопки отправки формы
-export function setSubmitButtonState(button, isFormValid, inactiveButtonClass) {
+export function setSubmitButtonState(button, isFormValid, inactiveButtonClass = 'popup__button_disabled') {
     button.disabled = !isFormValid;
     button.classList.toggle(inactiveButtonClass, !isFormValid);
 }
 
 // Функция обработки события изменения в поле ввода
-function handleInputChange(event, submitButtonSelector, inactiveButtonClass, errorClass, inputErrorClass) {
+function handleInputChange(event, submitButton, inputErrorClass, errorClass) {
     const input = event.target;
     const isInputValid = input.validity.valid;
-    const form = input.closest('form');
-    const submitButton = form.querySelector(submitButtonSelector);
 
     // Состояние кнопки отправки формы на основе валидности формы
-    setSubmitButtonState(submitButton, form.checkValidity(), inactiveButtonClass);
+    setSubmitButtonState(submitButton, input.closest('form').checkValidity());
     setErrorState(input, isInputValid, errorClass, inputErrorClass);
 }
 
@@ -36,16 +34,19 @@ function enableValidation(config) {
     const inputs = document.querySelectorAll(inputSelector);
 
     // Слушатель событий input для всех элементов input
-    Array.from(inputs).forEach((input) => {
-        input.addEventListener('input', (event) => {
-            handleInputChange(event, submitButtonSelector, inactiveButtonClass, errorClass, inputErrorClass);
+    inputs.forEach(input => {
+        const form = input.closest('form');
+        const submitButton = form.querySelector(submitButtonSelector);
+
+        input.addEventListener('input', event => {
+            handleInputChange(event, submitButton, inputErrorClass, errorClass);
         });
     });
 
     // Деактивировать кнопки сабмита всех форм
     // Получаем все кнопки отправки форм
     const submitButtons = document.querySelectorAll(submitButtonSelector);
-    Array.from(submitButtons).forEach(button => {
+    submitButtons.forEach(button => {
         setSubmitButtonState(button, false, inactiveButtonClass);
     });
 }
