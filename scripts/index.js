@@ -2,20 +2,17 @@ import {initialCards} from "./data.js";
 import {elements} from "./elements.js";
 import {setSubmitButtonState} from "./validate.js";
 
-// Отображение карточек при загрузке страницы
-initialCards.forEach(function (item){
-    renderCard(item.name, item.link)
-});
+
 
 // Функция открытия popup
-export function openPopup(popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
     popup.addEventListener('mousedown', handleOverlayClick);
     document.addEventListener('keydown', handleKeyDown);
 }
 
 // Функция закрытия popup
-export function closePopup(popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
     popup.removeEventListener('mousedown', handleOverlayClick);
     document.removeEventListener('keydown', handleKeyDown);
@@ -87,23 +84,22 @@ function saveProfileInfo() {
 }
 
 // Обработчик «отправки» формы
-function handleFormSubmit(evt) {
+function handleFormProfileSubmit(evt) {
     evt.preventDefault();
     saveProfileInfo();
     handleCloseButton();
 }
 
 // Прикрепление обработчика к форме
-elements.popupForm.querySelector('form').addEventListener('submit', handleFormSubmit);
+elements.popupForm.querySelector('form').addEventListener('submit', handleFormProfileSubmit);
 
-  // Логика попапа добавить новое место
-
+// Логика попапа добавить новое место
 // Обработчик кнопки "Добавить новое место"
-function handleOpenPopup() {
+function handleOpenAddPlacePopup() {
     openPopup(elements.popupAddPlace);
 }
 
-elements.profileAddButton.addEventListener('click', handleOpenPopup);
+elements.profileAddButton.addEventListener('click', handleOpenAddPlacePopup);
 
 // Обработчик кнопки "Закрыть"
 function handleCloseButtonAddPlace(){
@@ -134,7 +130,7 @@ function handleLikeButton(event) {
     button.classList.toggle('card__like-button_active');
 }
 
-export function addListenerLikeButton(div) {
+function addListenerLikeButton(div) {
     div.querySelector('.card__like-button').addEventListener('click', handleLikeButton);
 }
 
@@ -156,7 +152,7 @@ function createNewCard(name, link) {
 }
 
 // Отображение карточки
-export function renderCard(name, link) {
+function renderCard(name, link) {
     // Создание новой карточки
     const newCard = createNewCard(name, link);
     // Добавление карточки в контейнер
@@ -164,7 +160,7 @@ export function renderCard(name, link) {
 }
 
 // Удаление карточки
-export function addListenerRemoveCard(card) {
+function addListenerRemoveCard(card) {
     card.querySelector('.card__delete-button').addEventListener('click', handleDeleteButton);
 }
 
@@ -191,9 +187,11 @@ function closeImagePopup() {
 elements.crossButton.addEventListener('click', closeImagePopup);
 
 // Добавление обработчика клика на изображение в переданном div элементе
-export function addListenerOpenImage(div) {
+function addListenerOpenImage(div) {
     div.querySelector('img').addEventListener('click', handleClickImage);
 }
+
+
 
 // Функция обработки клика по overlay
 function handleOverlayClick(event) {
@@ -214,3 +212,8 @@ function handleKeyDown(event) {
         }
     }
 }
+
+// Отображение карточек при загрузке страницы
+initialCards.forEach(function (item){
+    renderCard(item.name, item.link)
+});
