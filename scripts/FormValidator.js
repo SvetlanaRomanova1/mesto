@@ -6,17 +6,18 @@ export default class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
-    }
+    };
 
     // Приватный метод устанавливает состояние ошибки для указанного input.
-    _setErrorState(input, isInputValid) {
+    setErrorState(input) {
+        const isInputValid = input.validity.valid;
         const errorSpan = input.parentNode.querySelector(`.${this._errorClass}`);
         errorSpan.textContent = input.validationMessage;
         input.classList.toggle(this._inputErrorClass, !isInputValid);
-    }
+    };
 
     // Приватный метод устанавливает состояние кнопки отправки формы в зависимости от валидности формы.
-    _setSubmitButtonState(isFormValid) {
+    setSubmitButtonState(isFormValid) {
         const submitButton = this._formElement.querySelector(
             this._submitButtonSelector
         );
@@ -25,17 +26,16 @@ export default class FormValidator {
             this._inactiveButtonClass,
             !isFormValid
         );
-    }
+    };
 
     // Приватный метод обрабатывает событие input для элементов input формы.
     _handleInputChange(event) {
         const input = event.target;
-        const isInputValid = input.validity.valid;
 
         // Устанавливаем состояние кнопки отправки и ошибку для текущего input
-        this._setSubmitButtonState(this._formElement.checkValidity());
-        this._setErrorState(input, isInputValid);
-    }
+        this.setSubmitButtonState(this._formElement.checkValidity());
+        this.setErrorState(input);
+    };
 
     // Приватный метод устанавливает обработчики событий для элементов формы.
     _setEventListeners() {
@@ -43,7 +43,7 @@ export default class FormValidator {
         inputs.forEach((input) => {
             input.addEventListener('input', this._handleInputChange.bind(this));
         });
-    }
+    };
 
     // Публичный метод включает валидацию формы.
     enableValidation() {
@@ -52,6 +52,6 @@ export default class FormValidator {
         });
         // Устанавливаем обработчики событий для элементов формы и начальное состояние кнопки отправки
         this._setEventListeners();
-        this._setSubmitButtonState(false);
+        this.setSubmitButtonState(false);
     }
-}
+};

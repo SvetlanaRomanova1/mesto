@@ -6,7 +6,9 @@ import {INITIAL_CARDS, VALIDATION_CONFIG} from "./constant.js";
 // Находим кнопку редактировать профиль
 const profileButton = document.querySelector('.profile__button');
 // Находим модальное окно формы редактировать
-const popupForm = document.querySelector('#popup-form');
+const profilePopup = document.querySelector('#profilePopup');
+// Находим форму редактировать
+const profileForm = profilePopup.querySelector('form');
 // Находим элемент профиль - имя
 const profileName = document.querySelector('.profile__name');
 // Находим элемент профиль - о себе
@@ -15,30 +17,22 @@ const profileTitle = document.querySelector('.profile__title');
 const nameInput =  document.querySelector('#name');
 // Находим текстовое  поле формы - о себе
 const jobInput = document.querySelector('#job');
-// Находим кнопку сохранить формы редактировать профиль
-const saveProfileButton = document.querySelector('#save-profile');
 // Находим кнопку закрытия формы редактировать профиль
-const closeButton = document.querySelector('#close-button-profile');
+const popupCloseButtonProfile = document.querySelector('.popup__close-button-profile');
 // Находим кнопку - добавить место
 const profileAddButton = document.querySelector('.profile__add-button');
+// Находим модальное окно формы добавить место
+const popupAddPlace = document.querySelector('#popupAddPlace');
 // Находим форму добавить место
-const popupAddPlace = document.querySelector('#popup-add');
+const formAddPlace = popupAddPlace.querySelector('form');
 // Находим текстовое поле формы - место
-const place = document.querySelector('#place');
+const popupAddPlaceInput = document.querySelector('#popupAddPlaceInput');
 // Находим текстовое поле ссылка на картинку формы - место
-const linkPlace = document.querySelector('#link');
-// Находим кнопку создать место - формы добавить место
-const addNewLocation = document.querySelector('#create-place');
+const popupLinkAddPlaceInput = document.querySelector('#popupLinkAddPlaceInput');
 // Находим кнопку закрытия - формы добавить место
-const closeButtonPlace = document.querySelector('#close-button');
+const closeButtonPlace = document.querySelector('.popup__close-button-place');
 // Находим элемент cards
 const cardList = document.querySelector('.cards');
-
-// Функция для установки состояния кнопки отправки формы
-export function setSubmitButtonState(button, isFormValid, inactiveButtonClass = 'popup__button_disabled') {
-    button.disabled = !isFormValid;
-    button.classList.toggle(inactiveButtonClass, !isFormValid);
-}
 
 // Функция открытия popup
 function openPopup(popup) {
@@ -54,25 +48,6 @@ function closePopup(popup) {
     document.removeEventListener('keydown', handleKeyDown);
 }
 
-// Сброс состояния ошибки для указанного поля
-function resetErrorState(input, isInputValid) {
-    const errorSpan = input.parentNode.querySelector(`.popup__error-visible`);
-    errorSpan.textContent = input.validationMessage;
-    input.classList.toggle('popup__input_type_error', !isInputValid);
-}
-
-// Скрытие ошибки для указанного поля
-function hideError(input, className) {
-    input.classList.remove(className);
-    resetErrorState(input, true);
-}
-
-// Сброс состояния кнопки
-function resetButton(button, isFormValid) {
-    button.disabled = !isFormValid;
-    button.classList.toggle('popup__button_disabled', !isFormValid);
-}
-
 // Логика попапа редактировать профиль
 // Обработчик нажатия кнопки "Редактировать"
 function handleEditButton() {
@@ -82,15 +57,13 @@ function handleEditButton() {
 
 
     // Скрытие ошибок во всех полях формы
-    Array.from(popupForm.querySelectorAll('input')).forEach(input => {
-        hideError(input, 'popup__input_type_error');
-    });
+    editProfileFormValidation.setErrorState(nameInput)
+    editProfileFormValidation.setErrorState(jobInput)
 
     // Сброс состояния кнопки
-    resetButton(saveProfileButton, true);
-
+    editProfileFormValidation.setSubmitButtonState(profileForm)
     // Открытие попапа с формой
-    openPopup(popupForm);
+    openPopup(profilePopup);
 }
 
 // Добавление обработчика события на кнопку "Редактировать"
@@ -99,11 +72,11 @@ profileButton.addEventListener('click', handleEditButton);
 // Обработчик нажатия кнопки "Закрыть"
 function handleCloseButton() {
     // Закрытие попапа с формой
-    closePopup(popupForm);
+    closePopup(profilePopup);
 }
 
 // Добавление обработчика события на кнопку "Закрыть"
-closeButton.addEventListener('click', handleCloseButton);
+popupCloseButtonProfile.addEventListener('click', handleCloseButton);
 
 // Сохранение информации профиля
 function saveProfileInfo() {
@@ -124,7 +97,7 @@ function handleFormProfileSubmit(evt) {
 }
 
 // Прикрепление обработчика к форме
-popupForm.querySelector('form').addEventListener('submit', handleFormProfileSubmit);
+profileForm.addEventListener('submit', handleFormProfileSubmit);
 
 // Логика попапа добавить новое место
 // Обработчик кнопки "Добавить новое место"
@@ -137,6 +110,7 @@ profileAddButton.addEventListener('click', handleOpenAddPlacePopup);
 // Обработчик кнопки "Закрыть"
 function handleCloseButtonAddPlace() {
     closePopup(popupAddPlace);
+    addPlaceFormValidation.setSubmitButtonState(formAddPlace.checkValidity())
 }
 
 closeButtonPlace.addEventListener('click', handleCloseButtonAddPlace);
@@ -145,20 +119,18 @@ closeButtonPlace.addEventListener('click', handleCloseButtonAddPlace);
 function handleAddPlaceFormSubmit(evt) {
     evt.preventDefault();
     // Создание новой карточки с помощью введенных данных из формы
-    const card = new Card({name: place.value, link: linkPlace.value}, '#card-template');
+    const card = getCard({name: popupAddPlaceInput.value, link: popupLinkAddPlaceInput.value}, '#card-template')
     const cardElement = card.generateCard();
     // Находим элемент cards
     const cardList = document.querySelector('.cards');
     cardList.prepend(cardElement);
 
     // Закрытие попапа и сброс значений формы
+    formAddPlace.reset()
     handleCloseButtonAddPlace();
-    // Состояние кнопки отправки формы на основе валидности формы
-    setSubmitButtonState(addNewLocation, false, 'popup__button_disabled')
-    popupAddPlace.querySelector('form').reset()
 }
 
-popupAddPlace.querySelector('form').addEventListener('submit', handleAddPlaceFormSubmit);
+formAddPlace.addEventListener('submit', handleAddPlaceFormSubmit);
 
 // Функция обработки клика по overlay
 function handleOverlayClick(event) {
@@ -180,13 +152,19 @@ function handleKeyDown(event) {
     }
 }
 
+// Функция инстанцирование Card
+function getCard(data, templateSelector) {
+    return  new Card(data, templateSelector);
+}
+
 // Создание карточек на основе данных из initialCards и добавление их в список карточек
 INITIAL_CARDS.forEach((item) => {
-    const card = new Card(item, '#card-template');
+    const card = getCard(item, '#card-template')
     const cardElement = card.generateCard();
     cardList.append(cardElement);
 });
-// v 1: Инициализация валидации формы "Редактировать профиль"
+
+//  Инициализация валидации формы "Редактировать профиль"
         // Находим форму "Редактировать профиль" на странице
 const editProfile = document.querySelector('[name="edit-profile"]');
         // Создаем экземпляр класса FormValidator и передаем ему конфигурацию валидации и форму "Редактировать профиль"
@@ -194,7 +172,7 @@ const editProfileFormValidation = new FormValidator(VALIDATION_CONFIG, editProfi
         // Активируем валидацию для формы "Редактировать профиль"
 editProfileFormValidation.enableValidation();
 
-// v 2: Инициализация валидации формы "Добавить место"
+// Инициализация валидации формы "Добавить место"
          // Находим форму "Добавить место" на странице
 const addPlace = document.querySelector('[name="add-place"]');
         // Создаем экземпляр класса FormValidator и передаем ему конфигурацию валидации и форму "Добавить место"
