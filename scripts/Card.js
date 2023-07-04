@@ -1,4 +1,4 @@
-import {openPopup, closePopup} from './utils.js';
+import {openPopup} from './utils.js';
 
 export default class Card {
     constructor(data, templateSelector) {
@@ -49,11 +49,6 @@ export default class Card {
         const cardLikeButton = this._element.querySelector('.card__like-button');
         //Вешаем обработчик событий на кнопку card__like-button
         cardLikeButton.addEventListener('click', this._handleLikeButton);
-
-        //Находим кнопку popup__cross-button (кнопка для закрытия картинки)
-        const popupCrossButton = document.querySelector('.popup__cross-button');
-        //Вешаем обработчик событий на кнопку popup__cross-button
-        popupCrossButton.addEventListener('click', closePopup);
 
         //Находим кнопку card__delete-button (для удаления картинки)
         const cardDeleteButton = this._element.querySelector('.card__delete-button');

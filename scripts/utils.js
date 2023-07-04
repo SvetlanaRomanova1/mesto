@@ -3,7 +3,7 @@ export function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
         const popup = event.target.closest('.popup');
         if (popup) {
-            popup.classList.remove('popup_opened');
+            closePopup(popup);
         }
     }
 }
@@ -13,7 +13,7 @@ export function handleKeyDown(event) {
     if (event.key === 'Escape') {
         const popup = document.querySelector('.popup_opened');
         if (popup) {
-            popup.classList.remove('popup_opened');
+            closePopup(popup);
         }
     }
 }
@@ -26,7 +26,8 @@ export function openPopup(popup) {
 }
 
 // Функция закрытия popup
-export function closePopup(e) {
-    const popup = e.target.closest('.popup_opened');
+export function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    popup.removeEventListener('mousedown', handleOverlayClick);
+    document.removeEventListener('keydown', handleKeyDown);
 }

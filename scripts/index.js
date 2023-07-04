@@ -1,6 +1,7 @@
 import FormValidator from './FormValidator.js';
 import Card from "./Card.js";
 import {INITIAL_CARDS, VALIDATION_CONFIG} from "./constant.js";
+import {openPopup, closePopup} from "./utils.js";
 
 // Поиск элементов в Dom-элементе:
 // Находим кнопку редактировать профиль
@@ -33,21 +34,15 @@ const popupLinkAddPlaceInput = document.querySelector('#popupLinkAddPlaceInput')
 const closeButtonPlace = document.querySelector('.popup__close-button-place');
 // Находим элемент cards
 const cardList = document.querySelector('.cards');
+//Находим кнопку popup__cross-button (кнопка для закрытия картинки)
+const popupCrossButton = document.querySelector('.popup__cross-button');
+// Находим модальное окно картинки
+const popupImage = document.querySelector('.popup_overlay');
 
-// Функция открытия popup
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    popup.addEventListener('mousedown', handleOverlayClick);
-    document.addEventListener('keydown', handleKeyDown);
-}
-
-// Функция закрытия popup
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    popup.removeEventListener('mousedown', handleOverlayClick);
-    document.removeEventListener('keydown', handleKeyDown);
-}
-
+//Вешаем обработчик событий на кнопку popup__cross-button
+popupCrossButton.addEventListener('click', function() {
+    closePopup(popupImage);
+});
 // Логика попапа редактировать профиль
 // Обработчик нажатия кнопки "Редактировать"
 function handleEditButton() {
@@ -70,13 +65,13 @@ function handleEditButton() {
 profileButton.addEventListener('click', handleEditButton);
 
 // Обработчик нажатия кнопки "Закрыть"
-function handleCloseButton() {
+function handleCloseButtonProfile() {
     // Закрытие попапа с формой
     closePopup(profilePopup);
 }
 
 // Добавление обработчика события на кнопку "Закрыть"
-popupCloseButtonProfile.addEventListener('click', handleCloseButton);
+popupCloseButtonProfile.addEventListener('click', handleCloseButtonProfile);
 
 // Сохранение информации профиля
 function saveProfileInfo() {
@@ -93,7 +88,7 @@ function saveProfileInfo() {
 function handleFormProfileSubmit(evt) {
     evt.preventDefault();
     saveProfileInfo();
-    handleCloseButton();
+    handleCloseButtonProfile();
 }
 
 // Прикрепление обработчика к форме
@@ -132,25 +127,6 @@ function handleAddPlaceFormSubmit(evt) {
 
 formAddPlace.addEventListener('submit', handleAddPlaceFormSubmit);
 
-// Функция обработки клика по overlay
-function handleOverlayClick(event) {
-    if (event.target === event.currentTarget) {
-        const popup = event.target.closest('.popup');
-        if (popup) {
-            closePopup(popup);
-        }
-    }
-}
-
-// Функция обработки клавиши Escape
-function handleKeyDown(event) {
-    if (event.key === 'Escape') {
-        const popup = document.querySelector('.popup_opened');
-        if (popup) {
-            closePopup(popup);
-        }
-    }
-}
 
 // Функция инстанцирование Card
 function getCard(data, templateSelector) {
