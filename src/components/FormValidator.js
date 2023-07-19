@@ -6,6 +6,7 @@ export default class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
+        this._inputList = this._formElement.querySelectorAll(this._inputSelector);
     };
 
     // Приватный метод устанавливает состояние ошибки для указанного input.
@@ -39,8 +40,7 @@ export default class FormValidator {
 
     // Приватный метод устанавливает обработчики событий для элементов формы.
     _setEventListeners() {
-        const inputs = this._formElement.querySelectorAll(this._inputSelector);
-        inputs.forEach((input) => {
+        this._inputList.forEach((input) => {
             input.addEventListener('input', this._handleInputChange.bind(this));
         });
     };
@@ -53,5 +53,11 @@ export default class FormValidator {
         // Устанавливаем обработчики событий для элементов формы и начальное состояние кнопки отправки
         this._setEventListeners();
         this.setSubmitButtonState(false);
+    }
+
+    resetValidation() {
+        this._inputList.forEach(input => {
+            this.setErrorState(input);
+        })
     }
 };

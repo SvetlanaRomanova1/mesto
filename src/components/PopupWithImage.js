@@ -5,7 +5,7 @@ export default class PopupWithImage extends Popup {
         super(selector);
     }
 
-    open = (e) =>  {
+    open(e) {
         super.open();
         const link = e.target.getAttribute('src');
         const name = e.target.getAttribute('alt');

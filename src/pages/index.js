@@ -1,6 +1,15 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import * as constants from "../utils/constant.js";
+import {
+    nameInput,
+    jobInput,
+    profileButton,
+    profileAddButton,
+    closeButtonPlace,
+    initialCards,
+    validationConfig,
+    profileForm
+} from "../utils/constant.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -15,9 +24,9 @@ const popupWithImage = new PopupWithImage('.popup_overlay');
 
 // Функция сохранения информации профиля
 function saveProfileInfo() {
-    const name = constants.nameInput.value;
-    const job = constants.jobInput.value;
-    userInfo.setUserInfo({name, job })
+    const name = nameInput.value;
+    const job = jobInput.value;
+    userInfo.setUserInfo({name, job})
 }
 
 // Обработчик отправки формы редактирования профиля
@@ -38,28 +47,24 @@ const userInfo = new UserInfo({
 
 // Обработчик кнопки "Редактировать профиль"
 function handleEditButton() {
-    const {name, job } = userInfo.getUserInfo();
-    constants.nameInput.value = name;
-    constants.jobInput.value = job;
+    const data = userInfo.getUserInfo();
+    popupEditProfile.setInputValues(data);
 
-    editProfileFormValidation.setErrorState(constants.nameInput)
-    editProfileFormValidation.setErrorState(constants.jobInput)
-
-    editProfileFormValidation.setSubmitButtonState(constants.profileForm)
+    editProfileFormValidation.resetValidation();
+    editProfileFormValidation.setSubmitButtonState(profileForm.checkValidity())
     popupEditProfile.open()
 }
 
 // Добавление обработчика события на кнопку "Редактировать профиль"
-constants.profileButton.addEventListener('click', handleEditButton);
+profileButton.addEventListener('click', handleEditButton);
 
 // Обработчик отправки формы добавления нового места
 function handleAddPlaceFormSubmit(data) {
     const card = getCard({name: data['place'], link: data['link']}, '#card-template', popupWithImage.open)
     const cardElement = card.generateCard();
-    const cardList = document.querySelector('.cards');
-    cardList.prepend(cardElement);
-
+    section.addItem(cardElement);
     popupAddPlace.close();
+    addPlaceFormValidation.setSubmitButtonState(popupAddPlace._formElement.checkValidity())
 }
 
 // Создание экземпляра попапа добавления нового места
@@ -67,9 +72,9 @@ const popupAddPlace = new PopupWithForm('#popupAddPlace', handleAddPlaceFormSubm
 popupAddPlace.setEventListeners();
 
 // Добавление обработчика события на кнопку "Добавить новое место"
-constants.profileAddButton.addEventListener('click', () => popupAddPlace.open());
+profileAddButton.addEventListener('click', () => popupAddPlace.open());
 // Добавление обработчика события на кнопку "Закрыть" в попапе добавления нового места
-constants.closeButtonPlace.addEventListener('click', popupAddPlace.close);
+closeButtonPlace.addEventListener('click', popupAddPlace.close);
 
 // Функция создания карточки с переданными данными
 function getCard(data, templateSelector, handleCardClick) {
@@ -83,13 +88,12 @@ function renderer(item) {
 }
 
 // Создание экземпляра класса Section для управления секцией карточек
-const section = new Section({items: constants.initialCards, renderer }, '.cards');
+const section = new Section({items: initialCards, renderer}, '.cards');
 section.renderItems();
-
 // Создание экземпляра валидатора для формы редактирования профиля
-const editProfileFormValidation = new FormValidator(constants.validationConfig, popupEditProfile._formElement);
+const editProfileFormValidation = new FormValidator(validationConfig, popupEditProfile._formElement);
 editProfileFormValidation.enableValidation();
 // Создание экземпляра валидатора для формы добавить место
-const addPlaceFormValidation = new FormValidator(constants.validationConfig, popupAddPlace._formElement);
+const addPlaceFormValidation = new FormValidator(validationConfig, popupAddPlace._formElement);
 addPlaceFormValidation.enableValidation();
 
