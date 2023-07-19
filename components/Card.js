@@ -1,10 +1,9 @@
-import {openPopup} from './utils.js';
-
 export default class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this.handleCardClick = handleCardClick;
     };
 
     // Приватный метод для получения шаблона карточки из HTML.
@@ -14,17 +13,6 @@ export default class Card {
             .cloneNode(true);
     };
 
-    // Приватный метод для обработки события клика на изображении карточки.
-    _handleClickImage() {
-        const imageSrc = this._element.querySelector('.card__image').getAttribute('src');
-        const altText =this._element.querySelector('.card__image').getAttribute('alt');
-        const popupOverlay = document.querySelector('.popup_overlay');
-        const popupImage = popupOverlay.querySelector('.popup__image');
-        popupImage.src = imageSrc;
-        popupImage.alt = altText;
-        popupOverlay.querySelector('.popup__text').textContent = altText;
-        openPopup(popupOverlay);
-    };
 
     // Приватный метод для обработки события клика на кнопку "Нравится" карточки.
     _handleLikeButton = () => {
@@ -42,9 +30,7 @@ export default class Card {
         //Находим элемент cardImage
         const cardImage = this._element.querySelector('.card__image');
         //Обработчик событий нажатие на карточки
-        cardImage.addEventListener('click', (e) => {
-            this._handleClickImage(e);
-        });
+        cardImage.addEventListener('click', this.handleCardClick);
         //Находим кнопку card__like-button (кнопка для установки нравиться)
         const cardLikeButton = this._element.querySelector('.card__like-button');
         //Вешаем обработчик событий на кнопку card__like-button
