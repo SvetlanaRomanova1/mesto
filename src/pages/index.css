@@ -15,7 +15,7 @@
 @import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__image/profile__image.css);
-@import url(../blocks/profile/__avatar/_wrap/profile__avatar_wrap.css);
+@import url(../blocks/profile/__avatar-wrap/profile__avatar-wrap.css);
 /* Блок стиля css element*/
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__like-button/card__like-button.css);
