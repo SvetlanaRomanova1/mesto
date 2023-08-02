@@ -34,8 +34,7 @@ export default class Api {
         return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
-                ...this.headers,
-                'Content-Type': 'application/json'
+                ...this.headers
             },
             body: JSON.stringify({
                 name: user.name,
@@ -50,8 +49,7 @@ export default class Api {
         return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
             headers: {
-                ...this.headers,
-                'Content-Type': 'application/json'
+                ...this.headers
             },
             body: JSON.stringify({
                 name: name,
@@ -93,8 +91,7 @@ export default class Api {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
-                ...this.headers,
-                'Content-Type': 'application/json'
+                ...this.headers
             },
             body: JSON.stringify({
                 avatar: avatar.link

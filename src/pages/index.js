@@ -23,7 +23,8 @@ import PopupConfirm from "../components/PopupConfirm.js";
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-72',
     headers: {
-        authorization: 'feda086f-6f7a-4a92-a7c8-dfe4532414fe'
+        authorization: 'feda086f-6f7a-4a92-a7c8-dfe4532414fe',
+        'Content-Type': 'application/json'
     }
 });
 
