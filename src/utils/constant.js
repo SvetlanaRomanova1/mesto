@@ -50,5 +50,10 @@ export const profileAddButton = document.querySelector('.profile__add-button');
 export const closeButtonPlace = document.querySelector('.popup__close-button-place');
 // Находим модальное окно картинки
 export const popupImage = document.querySelector('.popup_overlay');
+// Находим кнопку редактирования аватара
+export const editButtonAvatar = document.querySelector('.profile__avatar_wrap');
+
+
+
 
 
