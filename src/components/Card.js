@@ -24,9 +24,9 @@ export default class Card {
             .cloneNode(true);
     }
 
-    // Приватный метод для обработки события клика на кнопку "Нравится" карточки.
-    _handleLikeButton() {
-        this._handleLike(this._id, this._likeButton.classList.contains('card__like-button_active'));
+    // Метод для обработки события клика на кнопку "Нравится" карточки.
+    handleLikeButton(likes) {
+        this._likeNumberElement.textContent = likes.length || '';
         this._likeButton.classList.toggle('card__like-button_active');
     }
 
@@ -35,15 +35,16 @@ export default class Card {
         this._handleConfirm(this);
     }
 
-    handleDeleteCard(id){
+    handleDeleteCard(){
         this._element.remove();
     }
+
 
     // Приватный метод для установки обработчиков событий для элементов карточки.
     _setEventListeners() {
         this._imageElement.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._link}));
         this._deleteButton.addEventListener('click', () => this._handleDeleteButton());
-        this._likeButton.addEventListener('click', () => this._handleLikeButton());
+        this._likeButton.addEventListener('click', () => this._handleLike());
     }
 
     // Публичный метод для генерации карточки на основе данных,

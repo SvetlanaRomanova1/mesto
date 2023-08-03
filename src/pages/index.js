@@ -1,8 +1,6 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import {
-    nameInput,
-    jobInput,
     profileButton,
     profileAddButton,
     closeButtonPlace,
@@ -51,9 +49,9 @@ popupConfirm.setEventListeners()
 async function handleFormProfileSubmit(data) {
     try {
         const {name, job} = data;
+        popupEditProfile.renderLoading(true, 'Сохранение...');
         await api.editUserInfo({name: name, about: job});
         userInfo.setUserInfo({name, job});
-        popupEditProfile.renderLoading(true, 'Сохранение...');
         popupEditProfile.close();
     } catch (error) {
         console.error(error);
@@ -63,15 +61,16 @@ async function handleFormProfileSubmit(data) {
 }
 
 // Обработчик лайков
-async function handleLike(id, isRemove) {
+async function handleLike() {
+    const isRemove = this._likeButton.classList.contains('card__like-button_active');
     try {
         if (isRemove) {
-            const result = await api.likeCardRemove(id);
-            this._likeNumberElement.textContent = result.likes.length || '';
+            const result = await api.likeCardRemove(this._id);
+            this.handleLikeButton(result.likes)
             return;
         }
-        const result = await api.likeCardAdd(id);
-        this._likeNumberElement.textContent = result.likes.length || '';
+        const result = await api.likeCardAdd(this._id);
+        this.handleLikeButton(result.likes)
     } catch (error) {
         console.log(error);
     }
@@ -109,12 +108,12 @@ async function handleAddPlaceFormSubmit(data) {
         );
         const cardElement = card.generateCard();
         section.addItem(cardElement);
+        popupAddPlace.close();
     } catch (error) {
         console.log(error);
     } finally {
         popupAddPlace.renderLoading(false);
     }
-    popupAddPlace.close();
     addPlaceFormValidation.setSubmitButtonState(popupAddPlace._formElement.checkValidity())
 }
 
@@ -195,4 +194,7 @@ editProfileFormValidation.enableValidation();
 // Создание экземпляра валидатора для формы добавить место
 const addPlaceFormValidation = new FormValidator(validationConfig, popupAddPlace._formElement);
 addPlaceFormValidation.enableValidation();
+// Создание экземпляра валидатора для формы Обновить аватар
+const updateAvatarForm = new FormValidator(validationConfig, popupUpdateAvatar._formElement);
+updateAvatarForm.enableValidation();
 

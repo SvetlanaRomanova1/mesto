@@ -40,10 +40,6 @@ export const profileButton = document.querySelector('.profile__button');
 export const profilePopup = document.querySelector('#profilePopup');
 // Находим форму редактировать
 export const profileForm = profilePopup.querySelector('form');
-// Находим текстовое  поле формы - имя
-export const nameInput =  document.querySelector('#name');
-// Находим текстовое  поле формы - о себе
-export const jobInput = document.querySelector('#job');
 // Находим кнопку - добавить место
 export const profileAddButton = document.querySelector('.profile__add-button');
 // Находим кнопку закрытия - формы добавить место
