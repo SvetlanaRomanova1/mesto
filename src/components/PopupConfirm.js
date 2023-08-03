@@ -6,9 +6,9 @@ export default class PopupConfirm extends Popup {
         this._handleDeleteCard = handleDeleteCard;
     }
 
-    open(id) {
+    open(card) {
         super.open();
-        this._id = id;
+        this._card = card;
     }
 
     setEventListeners() {
@@ -16,12 +16,8 @@ export default class PopupConfirm extends Popup {
         this.popupElement.querySelector('.popup__form-confirm')
             .addEventListener('submit', (evt) => {
                 evt.preventDefault();
-                this._handleDeleteCard(this._id)
-                    .then(() => {
-                        const card = document.querySelector(`[data-card-id="${this._id}"]`);
-                        card.remove();
-                        this.close();
-                    })
+                this._handleDeleteCard(this._card)
+                this.close();
             })
     }
 }

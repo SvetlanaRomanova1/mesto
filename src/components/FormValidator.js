@@ -2,11 +2,12 @@ export default class FormValidator {
     constructor(config, formElement) {
         this._formElement = formElement;
         this._inputSelector = config.inputSelector;
-        this._submitButtonSelector = config.submitButtonSelector;
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
         this._inputList = this._formElement.querySelectorAll(this._inputSelector);
+        this._submitButton = this._formElement.querySelector(config.submitButtonSelector);
+        this._inactiveButtonClass = config.inactiveButtonClass;
     };
 
     // Приватный метод устанавливает состояние ошибки для указанного input.
@@ -19,14 +20,8 @@ export default class FormValidator {
 
     // Приватный метод устанавливает состояние кнопки отправки формы в зависимости от валидности формы.
     setSubmitButtonState(isFormValid) {
-        const submitButton = this._formElement.querySelector(
-            this._submitButtonSelector
-        );
-        submitButton.disabled = !isFormValid;
-        submitButton.classList.toggle(
-            this._inactiveButtonClass,
-            !isFormValid
-        );
+        this._submitButton.disabled = !isFormValid;
+        this._submitButton.classList.toggle(this._inactiveButtonClass, !isFormValid);
     };
 
     // Приватный метод обрабатывает событие input для элементов input формы.

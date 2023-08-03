@@ -12,7 +12,6 @@ import {
 } from "../utils/constant.js";
 import Api from "../components/Api.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
@@ -28,32 +27,33 @@ const api = new Api({
     }
 });
 
-// Создание экземпляра попапа для закрытия оверлея
-const popupOverlay = new Popup('.popup_overlay');
-popupOverlay.setEventListeners();
+// Создание экземпляра класса Section для управления секцией карточек
+const section = new Section( renderer, '.cards');
+
 const popupWithImage = new PopupWithImage('.popup_overlay');
+popupWithImage.setEventListeners();
 
-// Создание экземпляра попапа для удаления карточки
-const popupConfirm = new PopupConfirm('#popupDeleteCard', api.deleteCard)
-popupConfirm.setEventListeners()
-
-// Функция сохранения информации профиля
-async function saveProfileInfo() {
-    const name = nameInput.value;
-    const job = jobInput.value;
-    userInfo.setUserInfo({name, job});
+async function deleteCard(card) {
     try {
-        await api.editUserInfo({name, about: job});
+        await api.deleteCard(card._id);
+        card.handleDeleteCard();
+
     } catch (error) {
-        console.error(error);
+        console.log(error)
     }
 }
 
+// Создание экземпляра попапа для удаления карточки
+const popupConfirm = new PopupConfirm('#popupDeleteCard', deleteCard)
+popupConfirm.setEventListeners()
+
 // Обработчик отправки формы редактирования профиля
-async function handleFormProfileSubmit() {
-    popupEditProfile.renderLoading(true, 'Сохранение...');
+async function handleFormProfileSubmit(data) {
     try {
-        await saveProfileInfo();
+        const {name, job} = data;
+        await api.editUserInfo({name: name, about: job});
+        userInfo.setUserInfo({name, job});
+        popupEditProfile.renderLoading(true, 'Сохранение...');
         popupEditProfile.close();
     } catch (error) {
         console.error(error);
@@ -63,11 +63,19 @@ async function handleFormProfileSubmit() {
 }
 
 // Обработчик лайков
-function handleLike(id, isRemove) {
-    if (isRemove) {
-        return api.likeCardRemove(id);
+async function handleLike(id, isRemove) {
+    try {
+        if (isRemove) {
+            const result = await api.likeCardRemove(id);
+            this._likeNumberElement.textContent = result.likes.length || '';
+            return;
+        }
+        const result = await api.likeCardAdd(id);
+        this._likeNumberElement.textContent = result.likes.length || '';
+    } catch (error) {
+        console.log(error);
     }
-    return api.likeCardAdd(id)
+
 }
 
 // Создание экземпляра попапа редактирования профиля
@@ -100,7 +108,6 @@ async function handleAddPlaceFormSubmit(data) {
             handleLike
         );
         const cardElement = card.generateCard();
-        const section = new Section({items: [], renderer}, '.cards');
         section.addItem(cardElement);
     } catch (error) {
         console.log(error);
@@ -168,18 +175,19 @@ const userInfo = new UserInfo({
     avatar: '.profile__avatar'
 });
 
-try {
-    const info = await api.getUserInfo();
-    userInfo.setUserInfo({name: info.name, job: info.about});
-    userInfo.setAvatar({avatar: info.avatar})
-    const cards = await api.getCards();
-    // Создание экземпляра класса Section для управления секцией карточек
-    const section = new Section({items: cards.reverse(), renderer}, '.cards');
-    section.renderItems();
-} catch (error) {
-    console.error(error);
+async function init () {
+    try {
+        const info = await api.getUserInfo();
+        userInfo.setUserInfo({name: info.name, job: info.about});
+        userInfo.setAvatar({avatar: info.avatar})
+        const cards = await api.getCards();
+        section.renderItems(cards.reverse());
+    } catch (error) {
+        console.error(error);
+    }
 }
 
+init();
 
 // Создание экземпляра валидатора для формы редактирования профиля
 const editProfileFormValidation = new FormValidator(validationConfig, popupEditProfile._formElement);
